@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>จากลูกสาวคนเล็ก</title>
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    height:100vh;
+    font-family:'Segoe UI',sans-serif;
+    overflow:hidden;
+    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+    background-size:400% 400%;
+    animation:bg 12s ease infinite;
+}
+@keyframes bg{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* หน้า */
+.page{position:absolute;inset:0;display:none;}
+.page.active{display:block;}
+
+/* เด้งนุ่ม กล่องและรูป */
+.float{
+    animation:floatAnim 3s ease-in-out infinite;
+}
+@keyframes floatAnim{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+}
+
+/* กล่องข้อความ */
+.box{
+    position:absolute;
+    top:55%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(255,255,255,.92);
+    padding:20px;
+    border-radius:22px;
+    width:85vw;
+    max-width:420px;
+    text-align:center;
+    box-shadow:0 15px 30px rgba(0,0,0,.25);
+}
+.box p{
+    font-size:15px;
+    line-height:1.55;
+    margin:8px 0;
+}
+
+/* รูป */
+.pic{
+    position:absolute;
+    top:22%;
+    left:50%;
+    transform:translateX(-50%);
+    width:70vw;
+    max-width:260px;
+    border-radius:18px;
+    box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+
+/* ปุ่ม */
+input,button{
+    width:100%;
+    margin-top:10px;
+    padding:12px;
+    font-size:16px;
+    border-radius:12px;
+    border:none;
+}
+button{background:#ff6f91;color:white;}
+
+/* ปุ่มควบคุม */
+.ctrl{
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    display:flex;
+    gap:8px;
+}
+.ctrl button{width:auto;padding:8px 12px;font-size:14px;}
+
+/* หัวใจลอย */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    animation:floatUp linear infinite;
+    pointer-events:none;
+}
+@keyframes floatUp{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-120vh);opacity:0;}
+}
+
+/* confetti */
+.confetti{
+    position:absolute;
+    top:-10px;
+    animation:fall 2.5s linear forwards;
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" src="music.mp3" loop></audio>
+
+<!-- หน้าใส่รหัส -->
+<div id="login" class="page active">
+    <img src="https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/607128624_24923463807327173_3059320163509839049_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=6rnKEVxN_K8Q7kNvwEohcGa&_nc_oc=Adm_eFzWjz2FiN8q_q-3ZqMMHU9jGy56d46XNKgvwH-xg1Jp-3HDXKRZ9iGM_GuUoiI&_nc_zt=23&_nc_ht=scontent.fbkk12-1.fna&_nc_gid=BHjS_tK8Ng22eN1k_Z34gQ&oh=00_AfkVKQDbYUIsXhJWM_IezFY_Am6CiOWbKUL7BiQ7xHXC2w&oe=6956D3B6" class="pic float">
+  <div class="box float">
+        <h2>Give for my mom and dad</h2>
+        <p>หนูชอบกินอะไรมากที่สุด</p>
+        <input type="password" id="password">
+        <button onclick="checkPassword()">จะรู้ใจแค่ไหนไปดูกัน💕</button>
+        <p id="error" style="color:red;"></p>
+    </div>
+</div>
+
+<!-- หน้า 1 -->
+<div id="page1" class="page">
+    <div class="box float">
+        <h2> 💐แฮปปี้นิวเยียร์ค่าา</h2>
+        <p>เก่งนะเนี่ย ทายถูกด้วย</p>
+        <button onclick="nextPage(2)">หน้าต่อไป ➡</button>
+    </div>
+</div>
+
+<!-- หน้า 2 -->
+<div id="page2" class="page">
+    <img src="https://scontent.fbkk12-1.fna.fbcdn.net/v/t39.30808-6/605640800_24923463613993859_224724935351256941_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=p9MkOdF34h8Q7kNvwEmgbWb&_nc_oc=AdksHNsc8PWL87M2zNoA3e0tKsklg33_LjRpq0leIQXfRqnWeNJY_Mvv-p53I7R7f9A&_nc_zt=23&_nc_ht=scontent.fbkk12-1.fna&_nc_gid=jBSJHz4mwpr7WmiKbg5_6A&oh=00_Aflt6OXAJEVlAgjLMbfDqWseqi4vxriwOTiBERQb6oieaQ&oe=69559076" class="pic float">
+    <div class="box float">
+        <h2>❤️ สุดหล่อของหนู</h2>
+        <p>
+            หนูรักพ่อนะคะ ในสายตาหนูพ่อเก่งมากๆ ที่สำคัญหล่อมากอีกต่างหาก
+            เป็นหัวหน้าครอบครัวที่ดีมากๆ จะปีใหม่แล้วขอให้พ่อกินเหล้าลดลงหน่อย
+            อายุมากขึ้นแล้วนะ อย่าทำให้ลูกต้องเป็นห่วงบ่อยๆ
+            พยายามอย่ายกของหนักหรือทำอะไรเกินตัว ไม่ได้หนุ่มเหมือนเมื่อก่อนแล้วนะ
+        </p>
+        <button onclick="nextPage(3)">หน้าต่อไป ➡</button>
+    </div>
+</div>
+
+<!-- หน้า 3 -->
+<div id="page3" class="page">
+    <img src="https://scontent.fbkk13-3.fna.fbcdn.net/v/t39.30808-6/605447643_24923463490660538_5990485510125927885_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=RUrnj9E7LpQQ7kNvwEuQY0e&_nc_oc=Adm3jvqutYQFAjk_anHx3QqWEy18Xdd2F5Paofjc4IsbNyOzjwOqMzMCo5iil0MbGH4&_nc_zt=23&_nc_ht=scontent.fbkk13-3.fna&_nc_gid=RkTjY9hlhY1u1mojysdJbw&oh=00_AfnHwhmbgaDk57SiuevNNTY1qVmJfRXfTwsFf19UgVZXzA&oe=6956CD3F" class="pic float">
+    <div class="box float">
+        <h2>🌷คนสวยของหนู</h2>
+        <p>
+            แม่ก็อายุเยอะมากแล้วเหมือนกันนะ อย่ายกของหนัก
+            ดูแลตัวเองดีๆ อย่าทำให้ลูกๆเป็นห่วง
+            ถึงหนูอาจจะดื้อกับแม่บ้างนิดหน่อย พูดไม่ค่อยฟังบ้างเล็กน้อยตามภาษาเด็กวัยกำลังโต
+            แต่หนูรักแม่มากๆเลยนะ รักมากๆ ในสายตาหนูแม่ก็สวยมากๆแล้วก็ยังเก่งมากๆอีกต่างหากไม่แพ้พ่อเลย คนอะไรไม่รู้ทั้งสวยทั้งเก่ง 
+        </p>
+        <button onclick="nextPage(4)">ไปกันต่อออ💖</button>
+    </div>
+</div>
+
+<!-- หน้า 4 -->
+<div id="page4" class="page">
+    <img src="https://scontent.fbkk12-5.fna.fbcdn.net/v/t51.82787-15/591171372_18052429772669337_46400045375360723_n.jpg?stp=dst-jpegr_tt6&_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=m3z4fh6HXKEQ7kNvwFZ6aDJ&_nc_oc=Adlhwed10xkA78sp-C1i8U-5fuvIBjMq2L_IEU3I9PxvGldzja0h5Z_lCnKlbGK763U&_nc_zt=23&se=-1&_nc_ht=scontent.fbkk12-5.fna&_nc_gid=LwHu9uw-2f3vLAMMOfSKJQ&oh=00_AfnCXD4XJ3BODutfD0MzMjf6MiDmBh_kzjAvf4_4FPePLQ&oe=6956D787" class="pic float">
+    <div class="box float">
+        <h2>❤️ สุขสันต์วันปีใหม่นะคะ</h2>
+        <p>
+           ปีใหม่นี้ขอให้พ่อกับแม่สุขภาพร่างกายแข็งแรง มีความ สุขมากๆ เงินทองไหลมาเทมา โรคภัยไข้เจ็บที่เป็นอยู่ก็ขอให้ดีขึ้นทุกๆวัน ครอบครัวอยู่พร้อมหน้าพร้อมตาทุกๆปี
+        </p>
+         <button onclick="nextPage(5)">มารับรางวัลสำหรับคนรู้ใจกันนน💖</button>
+    </div>
+</div>
+
+<!-- หน้า 5 -->
+<div id="page5" class="page">
+    <img src="https://scontent.fbkk9-3.fna.fbcdn.net/v/t39.30808-6/604531378_24923463810660506_7826355501526386845_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Sd8SzmHOXwUQ7kNvwEj9vLQ&_nc_oc=AdkSHvwqL6_vGt-H8H3O8XMh8IlsaM8b6DNB0Q1PcvjADQNsLzaV6MRRWY2f_CQE1UY&_nc_zt=23&_nc_ht=scontent.fbkk9-3.fna&_nc_gid=_Q_ExjFP-v_oZlbFTWePig&oh=00_AfkI6XhCKA2xy_hDZWx7nbAzy1r13PzwFVU2NoKEwK3Dow&oe=6956D69C" class="pic float">
+    <div class="box float">
+        <h2>รางวัลสำหรับคนรู้ใจหนู</h2>
+        <p>
+            แคปหน้าจอหน้านี้เพื่อยืนยัน ส่งมาในไลน์กลุ่มแล้วรอรับรางวัลได้เลยค่ะ💖
+        </p>
+        <button onclick="nextPage(1)">ดูอีกรอบลูกสาวทำน่ารักเกิ้นน 🔄</button>
+    </div>
+</div>
+
+
+<!-- ปุ่มควบคุม -->
+<div class="ctrl">
+    <button onclick="toggleMusic()">🎵</button>
+</div>
+
+<script>
+const correctPassword="ชาบู";
+let musicPlayed=false;
+const bgm=document.getElementById("bgm");
+
+/* เปลี่ยนหน้า */
+function showPage(id){
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+/* รหัส */
+function checkPassword(){
+    if(password.value===correctPassword){
+        showPage("page1");
+        playMusic();
+        confetti();
+    }else{
+        error.innerText="โห่ ไม่เห็นรู้ใจหนูเลย";
+    }
+}
+function nextPage(n){
+    showPage("page"+n);
+    playMusic();
+}
+
+/* เพลง */
+function playMusic(){
+    if(!musicPlayed){
+        bgm.play().catch(()=>{});
+        musicPlayed=true;
+    }
+}
+function toggleMusic(){
+    if(bgm.paused) bgm.play();
+    else bgm.pause();
+}
+
+/* หัวใจ */
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=16+Math.random()*22+"px";
+    h.style.animationDuration=6+Math.random()*3+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),9000);
+},350);
+
+/* confetti */
+function confetti(){
+    for(let i=0;i<35;i++){
+        const c=document.createElement("div");
+        c.className="confetti";
+        c.innerText="✨";
+        c.style.left=Math.random()*100+"vw";
+        c.style.fontSize=14+Math.random()*14+"px";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),3000);
+    }
+}
+</script>
+
+</body>
+</html>
